@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="nav">
+    <a href="/">Blog</a>
+    <a sec:authorize="isAuthenticated()" href="/posts/new">New post</a>
+    <a sec:authorize="isAnonymous()" href="/login">Login</a>
+    <a sec:authorize="isAnonymous()" href="/register">Register</a>
+    <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
+        <button>Logout</button>
+    </form>
+</nav>
+</body>
+</html>

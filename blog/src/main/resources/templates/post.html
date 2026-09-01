@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head><title th:text="${post.title}">Post</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav th:replace="~{fragments :: nav}"></nav>
+
+<article>
+    <h1 th:text="${post.title}">Title</h1>
+    <small th:text="${post.author.username + ' · ' + post.createdAt}">author</small>
+    <p th:text="${post.body}">Body</p>
+</article>
+
+<h2>Last 10 comments</h2>
+
+<p th:if="${#lists.isEmpty(comments)}">No comments yet.</p>
+
+<div class="comment" th:each="comment : ${comments}">
+    <b th:text="${comment.author.username}">user</b>
+    <small th:text="${comment.createdAt}">time</small>
+    <p th:text="${comment.body}">comment</p>
+</div>
+
+<a sec:authorize="isAuthenticated()"
+   th:href="@{/posts/{id}/comments/new(id=${post.id})}">Add a comment</a>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+nav { display: flex; gap: 1rem; margin-bottom: 2rem; }
+article { border-bottom: 1px solid #ddd; padding: 1rem 0; }
+textarea, input { display: block; width: 100%; max-width: 600px; margin: .4rem 0 1rem; padding: .5rem; }
+button { padding: .5rem 1rem; }
+.error { color: #a00; }
+.comment { margin: 1rem 0; padding: .5rem; background: #f4f4f4; }

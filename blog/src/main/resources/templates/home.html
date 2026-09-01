@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<h1>Blog posts</h1>
+<p th:if="${#lists.isEmpty(posts)}">No posts yet.</p>
+<article th:each="post : ${posts}">
+    <h2><a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">Title</a></h2>
+    <small th:text="${post.author.username + ' · ' + post.createdAt}">author</small>
+    <p th:text="${post.body}">Body</p>
+</article>
+</body>
+</html>

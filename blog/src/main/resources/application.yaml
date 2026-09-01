@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: blog
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mydatabase
+    username: myuser
+    password: secret
+  jpa:
+    hibernate:
+      ddl-auto: create # Automatically reset the DB and build tables from the JPA entities on application startup. Development only.
+    open-in-view: false # Disable the ability to query the database from thymeleaf files.

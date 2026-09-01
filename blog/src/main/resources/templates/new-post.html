@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>New post</title></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<h1>New post</h1>
+<form method="post" th:action="@{/posts}" th:object="${postRequest}">
+    <label>Title</label>
+    <input th:field="*{title}" required>
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></p>
+    <label>Body</label>
+    <textarea th:field="*{body}" rows="10" required></textarea>
+    <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="error"></p>
+    <button>Publish</button>
+</form>
+</body>
+</html>

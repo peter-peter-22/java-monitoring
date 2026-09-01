@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>New comment</title></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<h1 th:text="${'Comment on: ' + post.title}">New comment</h1>
+<form method="post" th:action="@{/posts/{id}/comments(id=${post.id})}" th:object="${commentRequest}">
+    <label>Comment</label>
+    <textarea th:field="*{body}" required></textarea>
+    <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" class="error"></p>
+    <button>Comment</button>
+</form>
+</body>
+</html>

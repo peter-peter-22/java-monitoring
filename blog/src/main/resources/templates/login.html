@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Login</title></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<h1>Login</h1>
+<div th:if="${param.error}" class="error">
+    <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']}"
+       th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></p>
+</div>
+<form method="post" th:action="@{/login}">
+    <label>Username</label>
+    <input name="username" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button>Login</button>
+</form>
+</body>
+</html>
