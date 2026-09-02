@@ -75,20 +75,24 @@ class BlogApplicationTests {
                 .andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/"));
 
         mvc.perform(get("/")).andExpect(status().isOk()).andExpect(content().string(Matchers.containsString("Hello")));
+
         mvc.perform(get("/posts/1/comments/new").session((MockHttpSession) session))
                 .andExpect(status().isOk())
                 .andExpect(content().string(Matchers.containsString("Comment on: Hello")));
+
         mvc.perform(post("/posts/1/comments").session((MockHttpSession) session)
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("body", " "))
                 .andExpect(status().isOk())
                 .andExpect(view().name("new-comment"));
+
         mvc.perform(post("/posts/1/comments").session((MockHttpSession) session)
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("body", "Nice post"))
                 .andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/posts/1"));
+
         mvc.perform(get("/posts/1")).andExpect(status().isOk()).andExpect(content().string(Matchers.containsString("Nice post")));
     }
 }

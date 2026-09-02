@@ -9,3 +9,10 @@ spring:
     hibernate:
       ddl-auto: create # Automatically reset the DB and build tables from the JPA entities on application startup. Development only.
     open-in-view: false # Disable the ability to query the database from thymeleaf files.
+
+blog:
+  data:
+    comments: 100
+    posts: 20
+    users: 200
+    enabled: true

@@ -17,7 +17,7 @@ Using ```th:action="@{/url}"``` instead of ```action="/url"``` automatically han
 
 ## Java flight recorder
 
-JVM event profiler.
+JVM event profiler built into the JDK.
 
 This tool collects the performance metrics of function calls.
 
@@ -26,8 +26,6 @@ It can be started with JVM arguments and the `jcmd` CLI tool.
 The standard way is to give the JVM arguments directly from the CLI.
 
 ### Example usage
-
-```mvn package```
 
 ```
 ./mvnw spring-boot:run \
