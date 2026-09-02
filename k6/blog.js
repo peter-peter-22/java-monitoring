@@ -1,5 +1,25 @@
 /**
-
+ * This test sends realistic traffic to the blog site.
+ *
+ * The iteration:
+ * - An user profile is selected for the VU.
+ * - The user authenticates.
+ * - The user executes X randomly selected actions.
+ *
+ * The actions can be:
+ * - view home page
+ * - view a random blog post
+ * - create a blog post
+ * - create a comment
+ *
+ * The security:
+ * The VU has its own cookie storage, the cookies are handled automatically.
+ * The thymeleaf form CSRF tokens are extracted from the HTML then attached to the form data.
+ *
+ * How to run:
+ * - Start docker compose to create the DB.
+ * - Start the java blog app.
+ * - Run the k6 script in docker.
  */
 
 import http from "k6/http";
