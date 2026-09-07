@@ -40,3 +40,5 @@ The container sees the network of the host, enabling simple access to localhost.
 Normally, it sees an internal network where localhost belongs to the container.
 
 
+## Links
+- [Official docs](https://grafana.com/docs/k6/latest/using-k6/scenarios/)

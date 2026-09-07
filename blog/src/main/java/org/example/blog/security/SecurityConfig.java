@@ -2,6 +2,7 @@ package org.example.blog.security;
 
 import lombok.RequiredArgsConstructor;
 import org.example.blog.repository.UserRepository;
+import org.example.blog.service.DatabaseUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,25 +19,6 @@ public class SecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @RequiredArgsConstructor
-    static class DatabaseUserDetailsService implements UserDetailsService {
-        private final UserRepository userRepository;
-
-        @Override
-        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            var found = userRepository.findByUsername(username);
-            if (found.isEmpty()) {
-                throw new UsernameNotFoundException("User not found");
-            }
-            return User.withUsername(found.get().getUsername()).password(found.get().getPassword_hash()).build();
-        }
-    }
-
-    @Bean
-    UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new DatabaseUserDetailsService(userRepository);
     }
 
     @Bean

@@ -10,6 +10,28 @@ spring:
       ddl-auto: create # Automatically reset the DB and build tables from the JPA entities on application startup. Development only.
     open-in-view: false # Disable the ability to query the database from thymeleaf files.
 
+management:
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces
+
+  observations:
+    annotations:
+      enabled: true
+
+  management:
+    otlp:
+      metrics:
+        export:
+          url: http://localhost:4318/v1/metrics
+
 blog:
   data:
     comments: 100

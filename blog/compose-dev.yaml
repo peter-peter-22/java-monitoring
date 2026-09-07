@@ -1,0 +1,16 @@
+services:
+
+  lgtm:
+    image: grafana/otel-lgtm:0.30.1
+    ports:
+      - '3000:3000' # Grafana UI
+      - '4318:4318' # OTLP HTTP trace ingestion
+
+  postgres:
+    image: 'postgres:15.19'
+    environment:
+      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=myuser'
+    ports:
+      - '5432:5432'

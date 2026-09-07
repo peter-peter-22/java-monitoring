@@ -8,9 +8,11 @@ import org.example.blog.dto.RegisterRequest;
 import org.example.blog.model.AppUser;
 import org.example.blog.model.BlogPost;
 import org.example.blog.model.Comment;
-import org.example.blog.repository.BlogPostRepository;
 import org.example.blog.repository.CommentRepository;
 import org.example.blog.repository.UserRepository;
+import org.example.blog.service.BlogPostService;
+import org.example.blog.service.CommentService;
+import org.example.blog.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -24,22 +26,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class BlogController {
-    private final BlogPostRepository posts;
-    private final CommentRepository comments;
-    private final UserRepository users;
     private final PasswordEncoder passwordEncoder;
+    private final BlogPostService blogPostService;
+    private final CommentService commentService;
+    private final UserService userService;
 
     @GetMapping("/")
     String home(Model model) {
-        model.addAttribute("posts", posts.findAllByOrderByCreatedAtDesc());
+        model.addAttribute("posts", blogPostService.findRecentPosts());
         return "home";
     }
 
     @GetMapping("/posts/{id}")
     String post(@PathVariable Long id, Model model) {
-        BlogPost post = posts.findById(id).orElseThrow();
+        BlogPost post = blogPostService.findById(id).orElseThrow();
         model.addAttribute("post", post);
-        model.addAttribute("comments", comments.findTop10ByPostIdOrderByCreatedAtDesc(id));
+        model.addAttribute("comments", commentService.findRecentByPostId(id));
         return "post";
     }
 
@@ -62,12 +64,12 @@ public class BlogController {
         var username = body.username().trim();
         var password = body.password().trim();
 
-        if (users.existsByUsername(username)) {
+        if (userService.existsByUsername(username)) {
             model.addAttribute("error", "Username is already taken.");
             return "register";
         }
 
-        users.save(new AppUser(null, username, passwordEncoder.encode(password)));
+        userService.save(new AppUser(null, username, passwordEncoder.encode(password)));
         return "redirect:/login";
     }
 
@@ -79,7 +81,7 @@ public class BlogController {
 
     @GetMapping("/posts/{id}/comments/new")
     String newComment(@PathVariable Long id, Model model) {
-        model.addAttribute("post", posts.findById(id).orElseThrow());
+        model.addAttribute("post", blogPostService.findById(id).orElseThrow());
         model.addAttribute("commentRequest", new CommentRequest(null));
         return "new-comment";
     }
@@ -89,8 +91,8 @@ public class BlogController {
                       BindingResult bindingResult, Authentication auth) {
         if (bindingResult.hasErrors()) return "new-post";
 
-        AppUser user = users.findByUsername(auth.getName()).orElseThrow();
-        posts.save(new BlogPost(null, request.title(), request.body(), user, null));
+        AppUser user = userService.findByUsername(auth.getName()).orElseThrow();
+        blogPostService.save(new BlogPost(null, request.title(), request.body(), user, null));
         return "redirect:/";
     }
 
@@ -98,14 +100,14 @@ public class BlogController {
     String comment(@PathVariable Long id,
                    @ModelAttribute("commentRequest") @Valid CommentRequest request,
                    BindingResult bindingResult, Model model, Authentication auth) {
-        BlogPost post = posts.findById(id).orElseThrow();
+        BlogPost post = blogPostService.findById(id).orElseThrow();
         if (bindingResult.hasErrors()) {
             model.addAttribute("post", post);
             return "new-comment";
         }
 
-        AppUser user = users.findByUsername(auth.getName()).orElseThrow();
-        comments.save(new Comment(null, request.body().trim(), post, user, null));
+        AppUser user = userService.findByUsername(auth.getName()).orElseThrow();
+        commentService.save(new Comment(null, request.body().trim(), post, user, null));
         return "redirect:/posts/" + id;
     }
 }
