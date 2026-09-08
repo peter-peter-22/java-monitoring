@@ -18,6 +18,12 @@ services:
         condition: service_healthy
       lgtm:
         condition: service_started
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', '--silent', 'http://localhost:8080/actuator/health']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
 
   k6:
     image: grafana/k6:2.2.0
@@ -30,7 +36,7 @@ services:
     command: run --summary-export=result.json blog.js
     depends_on:
       blog:
-        condition: service_started
+        condition: service_healthy
 
   lgtm:
     image: grafana/otel-lgtm:0.30.1
