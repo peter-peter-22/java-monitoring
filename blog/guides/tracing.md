@@ -52,18 +52,6 @@ The choices of the project are highlighted with **bold** text.
 
 The project chose the spring boot micrometer + open telemetry + Grafana combination.
 
-### LGTM
-TODO separate
-For the simplest setup, the Grafana LGTM docker image is the best.
-This image contains pre-configured open telemetry collector, 
-tempo, UI, and other services those are not relevant now.
-
-This is a developer convenience that should not be used in production. 
-In production, the listed services should be independent containers to
-enable scaling.
-
-For the scalable container setup, see: *coming soon*
-
 ### Technical implementation of the selected tools:
 
 - Spring micrometer tracing: included in `spring-boot-starter-actuator`
@@ -145,7 +133,5 @@ After opening a trace in the previous step, the function time spans are visible.
 - [Micrometer tracing documentation and examples by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)
 - [Open telemetry tracing in spring boot tutorial](https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot)
 - [Spring micrometer tracing home page](https://docs.micrometer.io/tracing/reference/)
-- [Grafana docker LGTM home page](https://grafana.com/docs/opentelemetry/docker-lgtm/)
-- [Grafana docker OTEL LGTM github](https://github.com/grafana/docker-otel-lgtm)
 - [Micrometer tracing guide by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)
 - [Micrometer tracing documentation](https://docs.micrometer.io/tracing/reference/)
