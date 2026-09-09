@@ -6,7 +6,7 @@ We generate traffic for the blog application and inspect the performance
 metrics via the observation tools.
 
 Main parts:
-- Blog application: A sample blog application with java and [thymeleaf](blog/guides/thymeleaf.md).
+- Blog application: A sample blog application with java, postgres and [thymeleaf](blog/guides/thymeleaf.md).
 - Observation tools: Services for observing and visualizing metrics. 
 - Load tester: Realistic web traffic generator with K6.
 
