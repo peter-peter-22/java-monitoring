@@ -139,14 +139,17 @@ The grafana UI displays the metrics in the dashboard.
 
 ### The metrics menu
 After opening the grafana UI, open 'grafana/drilldown/metrics' to see the metrics.
+
 ![side_menu.png](images/metrics/side_menu.png)
 
 ### Filtering
 We can search for metrics by name.
+
 ![memory_metrics.png](images/metrics/memory_metrics.png)
 
 ### Custom metrics
 We can also see the custom metrics that we have created.
+
 ![custom_metrics.png](images/metrics/custom_metrics.png)
 
 ## Prometheus query language

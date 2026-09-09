@@ -10,8 +10,8 @@ Main parts:
 - Observation tools: Services for observing and visualizing metrics. 
 - Load tester: Realistic web traffic generator with K6.
 
-We are using the Grafana observation toolkit that unifies the creation 
-and visualization of multiple metrics.
+We are using the Grafana observation toolkit with spring boot micrometer.
+This unifies the creation and visualization of multiple metrics.
 
 ## Observation technologies
 
@@ -37,7 +37,7 @@ Tracking the hardware usage of the application and custom metrics.
 
 ![memory_metrics.png](blog/guides/images/metrics/memory_metrics.png)
 
-[metrics.md](blog/guides/metrics.md)
+Relevant article: [Metrics guide](blog/guides/metrics.md)
 
 ### Queryable logs
 
@@ -49,16 +49,16 @@ Tracking the hardware usage of the application and custom metrics.
 
 ### Custom dashboards
 
-The grafana UI allows creating custom dashboards.
+The grafana UI allows the creation of custom dashboards.
 
 ![view.png](blog/guides/images/dashboard/view.png)
 
-[dashboard.md](blog/guides/dashboard.md)
+Relevant article: [Custom dashboard guide](blog/guides/dashboard.md)
 
 ### K6 metrics
 
 Apart from generating traffic, K6 tracks request durations, 
-success rates and the result of the checks (if any).
+success rates and the result of the checks.
 
 ```json
 {
