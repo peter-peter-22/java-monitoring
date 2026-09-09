@@ -1,6 +1,6 @@
 # Tracking metrics
 
-Tracking application metrics shows the hardware usage and custom
+The tracking of the application metrics helps us to inspect the hardware usage and custom
 metrics.
 
 These statistics can indicate the application traffic, the number of
@@ -12,7 +12,7 @@ users and the remaining hardware capacity.
 
 We use spring boot actuator, prometheus and grafana to track metrics.
 
-- Spring boot actuator provides collects metrics about the application.
+- Spring boot actuator collects metrics about the application.
 
 - Prometheus is a monitoring system that collects metrics from the application 
 and exposes them to the user.
