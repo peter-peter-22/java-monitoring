@@ -12,24 +12,27 @@ users and the remaining hardware capacity.
 
 We use spring boot actuator, prometheus and grafana to track metrics.
 
-- Spring boot actuator provides a set of endpoints that can be used to
-track application metrics. 
+- Spring boot actuator provides collects metrics about the application.
 
-- Prometheus is a monitoring system that
-collects metrics from applications and exposes them to the user.
+- Prometheus is a monitoring system that collects metrics from the application 
+and exposes them to the user.
 
 - Grafana is a visualization tool that allows you to visualize the
 collected metrics.
 
 ### The architecture
 
-- Spring boot actuator collects the metrics and exposes them to
-the open telemetry collector.
+- Spring boot actuator collects the metrics and forwards them
+to the open telemetry collector.
 
 - The open telemetry collector buffers, formats and forwards the metrics
 to the prometheus server.
 
-- The grafana UI queries the prometheus server.
+- The grafana UI queries the prometheus server. 
+
+#### Aggregations
+The prometheus servers track metrics per application instance.
+The grafana UI does the aggregation.
 
 ### Code
 
@@ -100,7 +103,7 @@ public class BlogPostMetrics {
     }
 
     /*
-    The count is re-calculated independently of the actuator polling because
+    The count is re-calculated independently of the actuator reporting rate because
     expensive database queries should not depend on this polling rate.
 
     In distributed systems, this query would run for each instance.
