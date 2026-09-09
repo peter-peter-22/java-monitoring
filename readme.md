@@ -21,7 +21,7 @@ The following observation tools are used in the project:
 
 This tells us how much time the functions contributed to the request duration.
 
-![trace.png](blog/guides/images/trace.png)
+![trace.png](blog/guides/images/traces/trace.png)
 
 Relevant tools:
 - Open telemetry
@@ -37,11 +37,23 @@ Relevant article:
 
 ### Performance metrics 
 
-*coming soon*
+Tracking the hardware usage of the application and custom metrics.
+
+![memory_metrics.png](blog/guides/images/metrics/memory_metrics.png)
+
+[metrics.md](blog/guides/metrics.md)
 
 ### Database metrics
 
 *coming soon*
+
+### Custom dashboards
+
+The grafana UI allows creating custom dashboards.
+
+![view.png](blog/guides/images/dashboard/view.png)
+
+[dashboard.md](blog/guides/dashboard.md)
 
 ### K6 metrics
 
