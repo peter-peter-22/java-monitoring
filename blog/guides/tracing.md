@@ -53,7 +53,7 @@ The choices of the project are highlighted with **bold** text.
 The project chose the spring boot micrometer + open telemetry + Grafana combination.
 
 ### LGTM
-
+TODO separate
 For the simplest setup, the Grafana LGTM docker image is the best.
 This image contains pre-configured open telemetry collector, 
 tempo, UI, and other services those are not relevant now.
@@ -135,11 +135,11 @@ ordered by duration by default.
 A trace can be opened by clicking the blue link.
 
 Clicking the open icon will display the request in a separate window.
-![traces.png](images/traces.png)
+![traces.png](images/traces/traces.png)
 
 ### A single trace
 After opening a trace in the previous step, the function time spans are visible.
-![trace.png](images/trace.png)
+![trace.png](images/traces/trace.png)
 
 ## Links
 - [Micrometer tracing documentation and examples by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)
