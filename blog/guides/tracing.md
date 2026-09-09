@@ -129,6 +129,15 @@ Clicking the open icon will display the request in a separate window.
 After opening a trace in the previous step, the function time spans are visible.
 ![trace.png](images/traces/trace.png)
 
+## Tracing query language
+
+The traces in tempo can be queried with a query language "traceQL" to achieve custom aggregations.
+
+This is accessible in the "grafana/explore/tempo" menu of the
+grafana UI.
+
+[TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/)
+
 ## Links
 - [Micrometer tracing documentation and examples by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)
 - [Open telemetry tracing in spring boot tutorial](https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot)

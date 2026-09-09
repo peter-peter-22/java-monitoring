@@ -149,12 +149,14 @@ We can search for metrics by name.
 We can also see the custom metrics that we have created.
 ![custom_metrics.png](images/metrics/custom_metrics.png)
 
-## Prometheus QL
+## Prometheus query language
 
-Prometheus can manually query the metrics using the prometheus query language (QL).
+Prometheus can manually query the metrics by using the prometheus query language (promQL).
 
 This is accessible in the "grafana/explore/prometheus" menu of the
 grafana UI.
 
-Custom query result can also be used as dashboard widgets. See: dashboard guide
+[PromQL documentation](https://grafana.com/docs/grafana/latest/datasources/prometheus/query-editor/)
+
+Custom query result can also be used as dashboard widgets. See: [dashboard guide](dashboard.md)
 ![prometheus ql.png](images/metrics/prometheus%20ql.png)
