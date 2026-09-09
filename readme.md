@@ -61,34 +61,36 @@ Apart from generating traffic, K6 tracks request durations,
 success rates and the result of the checks (if any).
 
 ```json
-"root_group": {
-"name": "",
-"path": "",
-"id": "d41d8cd98f00b204e9800998ecf8427e",
-"groups": {},
-"checks": {
-"form page loaded": {
-"path": "::form page loaded",
-"id": "548b7a52704ae4e112233b06b3012d90",
-"passes": 528,
-"fails": 0,
-"name": "form page loaded"
-},
-"CSRF token found": {
-"fails": 0,
-"name": "CSRF token found",
-"path": "::CSRF token found",
-"id": "460c56e060ee8119886daf8469b695da",
-"passes": 528
-},
-"status was 200": {
-"name": "status was 200",
-"path": "::status was 200",
-"id": "1461660757a913d4fb82ac4c5e1009de",
-"passes": 3877,
-"fails": 0
-}
-}
+{
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": {},
+    "checks": {
+      "form page loaded": {
+        "path": "::form page loaded",
+        "id": "548b7a52704ae4e112233b06b3012d90",
+        "passes": 528,
+        "fails": 0,
+        "name": "form page loaded"
+      },
+      "CSRF token found": {
+        "fails": 0,
+        "name": "CSRF token found",
+        "path": "::CSRF token found",
+        "id": "460c56e060ee8119886daf8469b695da",
+        "passes": 528
+      },
+      "status was 200": {
+        "name": "status was 200",
+        "path": "::status was 200",
+        "id": "1461660757a913d4fb82ac4c5e1009de",
+        "passes": 3877,
+        "fails": 0
+      }
+    }
+  }
 }
 ```
 
