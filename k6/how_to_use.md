@@ -11,7 +11,7 @@ Blog
 ## Explanation:
 `--user "$(id -u):$(id -g)"` 
 
-The container runs with the permissions of the user who wrote uses the CLI.
+The container runs with the permissions of the user who's using the CLI.
 Without this, the container can't write to the mounted directory.
 
 `--rm`
