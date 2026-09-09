@@ -1,4 +1,4 @@
-## Java flight recorder guide
+# Java flight recorder guide
 
 JVM event profiler built into the JDK.
 
@@ -8,7 +8,7 @@ It can be started with JVM arguments and the `jcmd` CLI tool.
 
 The standard way is to give the JVM arguments directly from the CLI.
 
-### Example usage
+## Example usage
 
 ```
 ./mvnw spring-boot:run \
@@ -29,6 +29,16 @@ An example JFR dump command is logged when the java application starts with JFR 
 
 The created jfr file can be viewed with the intellij IDE or the [java mission control GUI](https://adoptium.net/jmc).
 
-### Links
+## Displayers
+
+Intellij
+
+![intellij.webp](images/jfr/intellij.webp)
+
+Java mission control (downloaded from the link above)
+
+![jmc.webp](images/jfr/jmc.webp)
+
+## Links
 
 - [JFR basic usage on java 8](https://www.baeldung.com/java-flight-recorder-monitoring)

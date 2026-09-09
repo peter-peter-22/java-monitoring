@@ -101,11 +101,10 @@ Relevant article: [K6 guides](k6/k6_index.md)
 Java flight recorder (JFR) is a hardware usage tracking tool
 that is built into the JDK.
 
-It is less useful in a realistic scenario than request durations.
+The difference between the spring boot micrometer hardware metrics and JFR
+is that JFR tracks CPU usage per function while micrometer is global. 
+Also, JFR lacks a streamlined way for continuous distributed logging and persistence.
 
-This tool does not have a streamlined approach for collecting and 
-persisting logs. It is more of a development-only tool.
-
-*jfr images*
+![jmc.webp](blog/guides/images/jfr/jmc.webp)
 
 Relevant articles: [JFR guide](blog/guides/java_flight_recorder.md)
