@@ -2,6 +2,7 @@ package org.example.blog.service;
 
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.blog.model.Comment;
 import org.example.blog.repository.CommentRepository;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository comments;
@@ -20,6 +22,7 @@ public class CommentService {
 
     @Observed
     public void save(Comment comment) {
-        comments.save(comment);
+        Comment saved = comments.save(comment);
+        log.info("Created comment id={} for post id={}", saved.getId(), saved.getPost().getId());
     }
 }

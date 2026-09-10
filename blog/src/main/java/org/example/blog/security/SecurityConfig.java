@@ -1,18 +1,13 @@
 package org.example.blog.security;
 
-import lombok.RequiredArgsConstructor;
 import org.example.blog.repository.UserRepository;
-import org.example.blog.service.DatabaseUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
@@ -22,7 +17,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, UserRepository users) {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/posts/*", "/register", "/css/**", "/login", "/logout", "/error","/actuator/**").permitAll()
                         .anyRequest().authenticated())
@@ -39,6 +34,7 @@ public class SecurityConfig {
                 .securityContext(context -> context
                         .requireExplicitSave(true)
                 );
+        http.addFilterAfter(new AuthenticatedUserMdcFilter(users), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

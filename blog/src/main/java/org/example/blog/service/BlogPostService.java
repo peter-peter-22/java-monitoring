@@ -2,6 +2,7 @@ package org.example.blog.service;
 
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.blog.configuration.BlogPostMetrics;
 import org.example.blog.model.BlogPost;
 import org.example.blog.repository.BlogPostRepository;
@@ -14,6 +15,7 @@ import java.util.Optional;
  * Warning: this service bean is leaking JPA entities, this should not happen in production.
  */
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class BlogPostService {
     private final BlogPostRepository posts;
@@ -31,7 +33,8 @@ public class BlogPostService {
 
     @Observed
     public void save(BlogPost blogPost) {
-        posts.save(blogPost);
+        BlogPost saved = posts.save(blogPost);
         metrics.incrementBlogPostsCreatedCounter();
+        log.info("Created blog post id={}", saved.getId());
     }
 }
