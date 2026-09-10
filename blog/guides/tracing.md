@@ -54,7 +54,7 @@ The project chose the spring boot micrometer + open telemetry + Grafana combinat
 
 ### Technical implementation of the selected tools:
 
-- Spring micrometer tracing: included in `spring-boot-starter-actuator`
+- Spring micrometer tracing: included in `spring-boot-starter-opentelemetry`
 - OTLP bridge: included in `spring-boot-starter-opentelemetry`
 - Open telemetry collector: included in LGTM
 - Grafana tempo: included in LGTM

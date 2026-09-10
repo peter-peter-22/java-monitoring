@@ -10,19 +10,17 @@ users and the remaining hardware capacity.
 
 ### Tools
 
-We use spring boot actuator, prometheus and grafana to track metrics.
+We use spring boot micrometer, prometheus and grafana to track metrics.
 
-- Spring boot actuator collects metrics about the application.
+- Spring boot micrometer collects metrics about the application.
 
-- Prometheus is a monitoring system that collects metrics from the application 
-and exposes them to the user.
+- Prometheus is a monitoring system that collects metrics from the application.
 
-- Grafana is a visualization tool that allows you to visualize the
-collected metrics.
+- Grafana is a visualization tool that can query and display the collected metrics.
 
 ### The architecture
 
-- Spring boot actuator collects the metrics and forwards them
+- Spring boot micrometer collects the metrics and forwards them
 to the open telemetry collector.
 
 - The open telemetry collector buffers, formats and forwards the metrics
@@ -51,12 +49,9 @@ management:
 
 Here, `http://localhost:4318` is the open telemetry collector URL.
 
-We need the `spring-boot-starter-actuator` and `spring-boot-starter-opentelemetry`
-packages to be installed.
+We need the `spring-boot-starter-opentelemetry`package to be installed.
 
-- The actuator is responsible for collecting the metrics.
-- Open telemetry formats and forwards them to the open telemetry
-collector.
+It contains spring boot micrometer, micrometer tracing and the open telemetry bridge.
 
 The hardware metrics are tracked by default.
 

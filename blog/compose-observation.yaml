@@ -21,6 +21,8 @@ services:
         condition: service_started
     healthcheck:
       test: ['CMD', 'curl', '--fail', '--silent', 'http://localhost:8080/actuator/health']
+      # Without actuator:
+      # test: ['CMD', 'curl', '--fail', '--silent', 'http://localhost:8080']
       interval: 2s
       timeout: 5s
       retries: 30
