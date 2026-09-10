@@ -1,12 +1,10 @@
 package org.example.blog.service;
 
-import io.micrometer.core.instrument.Counter;
 import io.micrometer.observation.annotation.Observed;
 import lombok.RequiredArgsConstructor;
 import org.example.blog.configuration.BlogPostMetrics;
 import org.example.blog.model.BlogPost;
 import org.example.blog.repository.BlogPostRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
