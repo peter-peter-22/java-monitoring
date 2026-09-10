@@ -90,19 +90,26 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
+        <!-- Optional actuator endpoints for development. We don't use the actuator in grafana or open telemetry. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+        <!-- Metric collector (micrometer) and exporter (Open telemetry bridge). -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-opentelemetry</artifactId>
         </dependency>
+
+        <!-- Logback appender for open telemetry. This is required for using loki logging with the open telemetry collector. -->
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
             <artifactId>opentelemetry-logback-appender-1.0</artifactId>
             <version>2.26.1-alpha</version>
         </dependency>
+
     </dependencies>
 
     <build>
