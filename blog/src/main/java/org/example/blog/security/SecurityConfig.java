@@ -1,5 +1,6 @@
 package org.example.blog.security;
 
+import io.micrometer.tracing.Tracer;
 import org.example.blog.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +18,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http, UserRepository users) {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, UserRepository users, Tracer tracer) {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/posts/*", "/register", "/css/**", "/login", "/logout", "/error","/actuator/**").permitAll()
                         .anyRequest().authenticated())
@@ -34,7 +35,7 @@ public class SecurityConfig {
                 .securityContext(context -> context
                         .requireExplicitSave(true)
                 );
-        http.addFilterAfter(new AuthenticatedUserMdcFilter(users), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterAfter(new AuthenticatedUserMdcFilter(users, tracer), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }

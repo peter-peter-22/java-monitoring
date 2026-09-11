@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import io.micrometer.tracing.Tracer;
+import lombok.RequiredArgsConstructor;
 import org.example.blog.repository.UserRepository;
 import org.slf4j.MDC;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -12,25 +14,27 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
- * Adds the authenticated application's numeric user identifier to log events for one request.
+ * Adds the authenticated application's numeric user identifier to log events and the request trace.
  */
+@RequiredArgsConstructor
 public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
     static final String USER_ID_MDC_KEY = "user.id";
 
     private final UserRepository users;
-
-    public AuthenticatedUserMdcFilter(UserRepository users) {
-        this.users = users;
-    }
+    private final Tracer tracer;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
             authenticatedUserId().ifPresentOrElse(
-                    userId -> MDC.put(USER_ID_MDC_KEY, userId),
+                    userId -> {
+                        MDC.put(USER_ID_MDC_KEY, userId);
+                        tracer.currentSpanCustomizer().tag(USER_ID_MDC_KEY, userId);
+                    },
                     () -> MDC.remove(USER_ID_MDC_KEY));
             filterChain.doFilter(request, response);
         }
@@ -39,7 +43,7 @@ public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
         }
     }
 
-    private java.util.Optional<String> authenticatedUserId() {
+    private Optional<String> authenticatedUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication instanceof AnonymousAuthenticationToken) {
