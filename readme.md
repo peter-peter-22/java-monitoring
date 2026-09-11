@@ -15,7 +15,14 @@ This unifies the creation and visualization of multiple metrics.
 
 ## Observation technologies
 
-The following observation tools are used in the project:
+The project uses spring boot micrometer, open telemetry format, and
+the Grafana ecosystem.
+
+These tools are often used together, 
+[this third party tutorial](https://www.danvega.dev/blog/opentelemetry-spring-boot) 
+builds a similar project.
+
+This project is using the following observation tools:
 
 ### Request time traces
 
@@ -39,9 +46,19 @@ Tracking the hardware usage of the application and custom metrics.
 
 Relevant article: [Metrics guide](blog/guides/metrics.md)
 
-### Queryable logs
+### Structured logs
 
-*coming soon*
+The logs are parameterized, they are stored externally and they can be
+queried in many ways.
+
+![logs_menu.png](blog/guides/images/logging/logs_menu.png)
+
+### Filtering by user
+
+The user id is appended to logs and traces to make it possible to retrieve
+all actions of a user chronologically.
+
+![logs.png](blog/guides/images/filter_by_user/logs.png)
 
 ### Database metrics
 

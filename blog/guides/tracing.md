@@ -138,6 +138,13 @@ grafana UI.
 
 [TraceQL documentation](https://grafana.com/docs/tempo/latest/traceql/)
 
+## User traces
+
+The user id is appended to the traces to make it possible to retrieve all
+traces of a user chronologically.
+
+[Filter traces by user id guide](custom_fields.md#filtering-traces)
+
 ## Links
 - [Micrometer tracing documentation and examples by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)
 - [Open telemetry tracing in spring boot tutorial](https://spring.io/blog/2025/11/18/opentelemetry-with-spring-boot)

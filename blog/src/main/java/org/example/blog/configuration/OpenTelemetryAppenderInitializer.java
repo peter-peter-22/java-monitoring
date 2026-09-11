@@ -5,7 +5,9 @@ import io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppen
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
-/** Connects Logback's OpenTelemetry appender to Spring Boot's OpenTelemetry SDK. */
+/**
+ * Connects Logback's OpenTelemetry appender to Spring Boot's OpenTelemetry SDK.
+ */
 @Component
 class OpenTelemetryAppenderInitializer implements InitializingBean {
 
