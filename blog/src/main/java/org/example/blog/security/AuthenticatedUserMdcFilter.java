@@ -18,12 +18,16 @@ import java.util.Optional;
 
 /**
  * Adds the authenticated application's numeric user identifier to log events and the request trace.
+ * `OncePerRequestFilter` is synonymous to request middleware.
  */
 @RequiredArgsConstructor
 public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
+    /** The name of the added user id field in the traces and logs. We can use this field name in the logQL and traceQL queries. */
     static final String USER_ID_MDC_KEY = "user.id";
 
     private final UserRepository users;
+
+    /** The trace span of this function. */
     private final Tracer tracer;
 
     @Override
@@ -32,9 +36,15 @@ public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
         try {
             authenticatedUserId().ifPresentOrElse(
                     userId -> {
+                        // Add a parameter of the slf4j log.
                         MDC.put(USER_ID_MDC_KEY, userId);
+                        // Add a tag to the tracer. (we should avoid "labels" for high-cardinality parameters so we use "tags" instead)
                         tracer.currentSpanCustomizer().tag(USER_ID_MDC_KEY, userId);
                     },
+                    // The MDC parameters are (java) thread-local, and they are not cleared after the request is finished.
+                    // This is because tomcat is reusing these threads.
+                    // We must manually clear them in this middleware to prevent them from affecting the next request.
+                    // This also means that async functions won't inherit the user id.
                     () -> MDC.remove(USER_ID_MDC_KEY));
             filterChain.doFilter(request, response);
         }
@@ -43,12 +53,15 @@ public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
         }
     }
 
+    /** Get the user id from the spring security authentication context if exists. */
     private Optional<String> authenticatedUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()
                 || authentication instanceof AnonymousAuthenticationToken) {
             return java.util.Optional.empty();
         }
+        // We are using the default username and password spring security user class that does not contain the database id.
+        // As a result, we have to get the user id from the username with a database query.
         return users.findByUsername(authentication.getName())
                 .map(user -> user.getId().toString());
     }
