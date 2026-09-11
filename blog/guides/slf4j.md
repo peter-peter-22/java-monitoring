@@ -45,3 +45,34 @@ try {
 
 Always clear MDC in a `finally` block: server threads are reused, and MDC does
 not automatically propagate to asynchronous work.
+
+## Logback configuration
+
+The application's `src/main/resources/logback-spring.xml` configures where
+Logback sends events:
+
+```xml
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <appender name="OTEL" class="io.opentelemetry.instrumentation.logback.appender.v1_0.OpenTelemetryAppender">
+        <captureMdcAttributes>user.id</captureMdcAttributes>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="OTEL"/>
+    </root>
+</configuration>
+```
+
+- `<configuration>` is the Logback configuration root.
+- The two `<include>` elements load Spring Boot's standard logging defaults and
+  its `CONSOLE` appender.
+- `<appender>` defines a destination. `OTEL` converts Logback events to
+  OpenTelemetry logs; `captureMdcAttributes` includes the MDC key `user.id`.
+- `<root level="INFO">` is the default minimum level: `INFO`, `WARN`, and
+  `ERROR` are emitted, while `DEBUG` and `TRACE` are suppressed. (The log levels are sequential.)
+- Each `<appender-ref>` attaches a destination to the root logger, so events go
+  to both the console and the OpenTelemetry exporter.
