@@ -1,3 +1,5 @@
+# This compose file start the application, database, load tester and grafana.
+# The desired test results will be visible in grafana.
 services:
 
   blog:

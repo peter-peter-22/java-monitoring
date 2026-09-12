@@ -1,3 +1,5 @@
+# This compose file starts only the database and grafana, the java application and the k6 tester must be started manually.
+# The goal of this is quick experimenting.
 services:
 
   lgtm:
