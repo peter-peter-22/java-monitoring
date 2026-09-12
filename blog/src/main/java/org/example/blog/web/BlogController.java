@@ -44,9 +44,9 @@ public class BlogController {
 
     @GetMapping("/posts/{id}")
     String post(@PathVariable Long id, Model model) {
-        BlogPost post = blogPostService.findById(id).orElseThrow();
+        BlogPost post = blogPostService.findForDisplayById(id).orElseThrow();
         model.addAttribute("post", post);
-        model.addAttribute("comments", commentService.findRecentByPostId(id)); // O(N) JPA problem. Thymeleaf comment.author.usernamecauses this?
+        model.addAttribute("comments", commentService.findRecentByPostId(id));
         return "post";
     }
 

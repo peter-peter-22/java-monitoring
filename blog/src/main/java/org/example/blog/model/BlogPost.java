@@ -20,7 +20,7 @@ public class BlogPost {
     private String title;
     @Column(nullable = false, columnDefinition = "text")
     private String body;
-    @ManyToOne(optional = false) @JoinColumn(name = "author_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = "author_id")
     private AppUser author;
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp

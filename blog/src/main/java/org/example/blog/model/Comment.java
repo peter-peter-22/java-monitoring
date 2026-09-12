@@ -18,9 +18,9 @@ public class Comment {
     private Long id;
     @Column(nullable = false, columnDefinition = "text")
     private String body;
-    @ManyToOne(optional = false) @JoinColumn(name = "post_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = "post_id")
     private BlogPost post;
-    @ManyToOne(optional = false) @JoinColumn(name = "author_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false) @JoinColumn(name = "author_id")
     private AppUser author;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)

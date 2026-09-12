@@ -32,6 +32,11 @@ public class BlogPostService {
     }
 
     @Observed
+    public Optional<BlogPost> findForDisplayById(Long id) {
+        return posts.findForDisplayById(id);
+    }
+
+    @Observed
     public void save(BlogPost blogPost) {
         BlogPost saved = posts.save(blogPost);
         metrics.incrementBlogPostsCreatedCounter();
