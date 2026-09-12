@@ -52,7 +52,7 @@ The choices of the project are highlighted with **bold** text.
 
 The project chose the spring boot micrometer + open telemetry + Grafana combination.
 
-### Technical implementation of the selected tools:
+### Implementation:
 
 - Spring micrometer tracing: included in `spring-boot-starter-opentelemetry`
 - OTLP bridge: included in `spring-boot-starter-opentelemetry`
@@ -85,6 +85,36 @@ management:
       # Most functions are not traced b default.
       # The @Observed annotation marks a function for tracing.
       # It's used on functions those are excepted to take a significant time.
+```
+
+The database query instrumentation requires additional dependencies.
+
+```xml
+<!-- Decorates the application DataSource to emit JDBC observations as OpenTelemetry spans. -->
+<dependency>
+  <groupId>net.ttddyy.observation</groupId>
+  <artifactId>datasource-micrometer-spring-boot</artifactId>
+</dependency>
+
+<dependency>
+  <groupId>net.ttddyy.observation</groupId>
+  <artifactId>datasource-micrometer-opentelemetry</artifactId>
+</dependency>
+```
+
+The 2 added dependencies are using their BOM, but this is optional. Hard-coded versions are fine too.
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>net.ttddyy.observation</groupId>
+            <artifactId>datasource-micrometer-bom</artifactId>
+            <version>2.1.1</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 ```
 
 ## Usage

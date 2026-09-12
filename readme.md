@@ -35,6 +35,7 @@ This project is using the following observation tools:
 ### Request time traces
 
 This tells us how much time the functions contributed to the request duration.
+It tracks database queries too.
 
 ![trace.png](blog/guides/images/traces/trace.png)
 
@@ -47,7 +48,8 @@ Tracking the hardware usage of the application and custom metrics.
 
 ![memory_metrics.png](blog/guides/images/metrics/memory_metrics.png)
 
-Relevant article: [Metrics guide](blog/guides/metrics.md)
+Relevant article: 
+[Metrics guide](blog/guides/metrics.md)
 
 ### Parameterized logs
 
@@ -56,7 +58,8 @@ queried in many ways.
 
 ![logs_menu.png](blog/guides/images/logging/logs_menu.png)
 
-Relevant article: [Filter by user]
+Relevant article: 
+[Logging guide](blog/guides/logging.md)
 
 ### Filtering by user
 
@@ -65,11 +68,9 @@ all actions of a user chronologically.
 
 ![logs.png](blog/guides/images/filter_by_user/logs.png)
 
-Relevant article: [Filter by user guide]
+Relevant article: 
+[Filter by user guide](blog/guides/filter_by_user.md)
 
-### Database metrics
-
-*coming soon*
 
 ### Custom dashboards
 
