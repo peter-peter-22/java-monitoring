@@ -25,6 +25,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
+/*
+Development only.
+This class looks unmaintainable for multiple reasons.
+Do not mix business logic and implementation details in real production code.
+ */
 public class BlogController {
     private final PasswordEncoder passwordEncoder;
     private final BlogPostService blogPostService;
@@ -41,7 +46,7 @@ public class BlogController {
     String post(@PathVariable Long id, Model model) {
         BlogPost post = blogPostService.findById(id).orElseThrow();
         model.addAttribute("post", post);
-        model.addAttribute("comments", commentService.findRecentByPostId(id));
+        model.addAttribute("comments", commentService.findRecentByPostId(id)); // O(N) JPA problem. Thymeleaf comment.author.usernamecauses this?
         return "post";
     }
 

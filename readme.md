@@ -77,7 +77,13 @@ The grafana UI allows the creation of custom dashboards.
 
 ![view.png](blog/guides/images/dashboard/view.png)
 
+> TODO add more widgets to the dashboard
+
 Relevant article: [Custom dashboard guide](blog/guides/dashboard.md)
+
+### Alerts
+
+*coming soon*
 
 ### K6 metrics
 

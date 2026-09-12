@@ -79,7 +79,10 @@ public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
 
 # Filtering logs
 
-The `grafana/explore/loki` menu can query the logs and filter by user id.
+
+The explore and drilldown menus of Loki can filter the logs by user id.
+
+The drilldown is sufficient on most cases.
 
 [Log query guide](logging.md)
 
@@ -87,7 +90,7 @@ The `grafana/explore/loki` menu can query the logs and filter by user id.
 
 # Filtering traces
 
-The `grafana/explore/tempo` menu can query the traces and filter by user id.
+The explore menu of Tempo can query the traces and filter by user id.
 
 [Trace query guide](tracing.md#tracing-query-language)
 
