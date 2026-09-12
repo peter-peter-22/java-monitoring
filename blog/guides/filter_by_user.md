@@ -1,5 +1,14 @@
-package org.example.blog.security;
+# User logs and traces
 
+The user id is appended to logs and traces to make it possible to retrieve
+all actions of a user chronologically.
+
+## Implementation
+
+- The user id is added to the current (java) thread local SLF4J logger context ([MDC](slf4j.md#mdc-context)).
+- The current trace span is retrieved and edited to contain the user id. 
+
+```java
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -66,3 +75,20 @@ public class AuthenticatedUserMdcFilter extends OncePerRequestFilter {
                 .map(user -> user.getId().toString());
     }
 }
+```
+
+# Filtering logs
+
+The `grafana/explore/loki` menu can query the logs and filter by user id.
+
+[Log query guide](logging.md)
+
+![logs.png](images/filter_by_user/logs.png)
+
+# Filtering traces
+
+The `grafana/explore/tempo` menu can query the traces and filter by user id.
+
+[Trace query guide](tracing.md#tracing-query-language)
+
+![traces.png](images/filter_by_user/traces.png)

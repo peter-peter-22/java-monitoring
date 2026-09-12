@@ -8,7 +8,7 @@ These logs carry the trace id, and optionally the user id.
 By using these fields we can find the logs of a trace in the
 Grafana trace viewer, or query the logs of a selected user.
 
-[Filter logs and traces by user guide](custom_fields.md)
+[Filter logs and traces by user guide](filter_by_user.md)
 
 ## Tools
 
@@ -135,4 +135,4 @@ for Loki logs.
 This project appends the user id to the logs if available to make
 the logs of a selected user queryable.
 
-[Filter logs by user id guide](custom_fields.md#filtering-logs)
+[Filter logs by user id guide](filter_by_user.md#filtering-logs)

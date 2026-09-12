@@ -143,7 +143,7 @@ grafana UI.
 The user id is appended to the traces to make it possible to retrieve all
 traces of a user chronologically.
 
-[Filter traces by user id guide](custom_fields.md#filtering-traces)
+[Filter traces by user id guide](filter_by_user.md#filtering-traces)
 
 ## Links
 - [Micrometer tracing documentation and examples by spring](https://docs.spring.io/spring-boot/reference/actuator/tracing.html)

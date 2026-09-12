@@ -10,6 +10,12 @@ Main parts:
 - Observation tools: Services for observing and visualizing metrics. 
 - Load tester: Realistic web traffic generator with K6.
 
+Tools:
+- Spring boot open telemetry integration
+- Spring boot micrometer
+- [Grafana LGTM](blog/guides/lgtm.md)
+- [Logback and SLF4J](blog/guides/slf4j.md)
+
 We are using the Grafana observation toolkit with spring boot micrometer.
 This unifies the creation and visualization of multiple metrics.
 
@@ -22,6 +28,8 @@ These tools are often used together,
 [this third party tutorial](https://www.danvega.dev/blog/opentelemetry-spring-boot) 
 builds a similar project.
 
+(The following list of the used tools was meant to be read sequentially.)
+
 This project is using the following observation tools:
 
 ### Request time traces
@@ -29,11 +37,6 @@ This project is using the following observation tools:
 This tells us how much time the functions contributed to the request duration.
 
 ![trace.png](blog/guides/images/traces/trace.png)
-
-Relevant tools:
-- Open telemetry
-- Grafana tempo
-- Grafana UI
 
 Relevant article:
 [Request tracing guide](blog/guides/tracing.md)
@@ -46,12 +49,14 @@ Tracking the hardware usage of the application and custom metrics.
 
 Relevant article: [Metrics guide](blog/guides/metrics.md)
 
-### Structured logs
+### Parameterized logs
 
-The logs are parameterized, they are stored externally and they can be
+The logs are parameterized, they are stored externally, and they can be
 queried in many ways.
 
 ![logs_menu.png](blog/guides/images/logging/logs_menu.png)
+
+Relevant article: [Filter by user]
 
 ### Filtering by user
 
@@ -59,6 +64,8 @@ The user id is appended to logs and traces to make it possible to retrieve
 all actions of a user chronologically.
 
 ![logs.png](blog/guides/images/filter_by_user/logs.png)
+
+Relevant article: [Filter by user guide]
 
 ### Database metrics
 
