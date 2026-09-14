@@ -19,6 +19,11 @@ Tools:
 We are using the Grafana observation toolkit with spring boot micrometer.
 This unifies the creation and visualization of multiple metrics.
 
+## How to start
+
+The simplest way to start is to use the `blog/compose-observation.yaml` compose file
+that starts the application, the observation tools and the load tester.
+
 ## Observation technologies
 
 The project uses spring boot micrometer, open telemetry format, and
@@ -82,7 +87,10 @@ Relevant article: [Custom dashboard guide](blog/guides/dashboard.md)
 
 ### Alerts
 
-*coming soon*
+Alert rules evaluate metrics continuously and can show a warning in Grafana or
+send it to a configured contact point such as email, Slack, or a webhook.
+
+Relevant article: [Grafana alerts guide](blog/guides/alerts.md)
 
 ### K6 metrics
 
