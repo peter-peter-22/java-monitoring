@@ -1,14 +1,14 @@
 # Summary
 
-This project demonstrates the usage of **observability** tools.
+This project demonstrates the usage of **observability** tools in java spring boot.
 
-We generate traffic for the blog application and inspect the performance
-metrics via the observation tools.
+We generate traffic for a blog application and inspect the performance
+metrics.
 
 Main parts:
-- Blog application: A sample blog application with java, postgres and [thymeleaf](blog/guides/thymeleaf.md).
-- Observation tools: Services for observing and visualizing metrics. 
-- Load tester: Realistic web traffic generator with K6.
+- Blog application: A sample blog application with java, postgres, and [thymeleaf](blog/guides/thymeleaf.md).
+- Observation tools: Grafana services for observing and visualizing metrics. 
+- Load tester: Web traffic generator with K6.
 
 Tools:
 - Spring boot open telemetry integration
@@ -22,18 +22,16 @@ This unifies the creation and visualization of multiple metrics.
 ## How to start
 
 The simplest way to start is to use the `blog/compose-observation.yaml` compose file
-that starts the application, the observation tools and the load tester.
+that starts the application, the observation tools, and the load tester.
 
 ## Observation technologies
 
-The project uses spring boot micrometer, open telemetry format, and
+The project uses spring boot micrometer, the open telemetry format, and
 the Grafana ecosystem.
 
-These tools are often used together, 
-[this third party tutorial](https://www.danvega.dev/blog/opentelemetry-spring-boot) 
+These tools are often used together. 
+[This third party tutorial](https://www.danvega.dev/blog/opentelemetry-spring-boot) 
 builds a similar project.
-
-(The following list of the used tools was meant to be read sequentially.)
 
 This project is using the following observation tools:
 
@@ -79,7 +77,7 @@ Relevant article:
 
 ### Custom dashboards
 
-The grafana UI allows the creation of custom dashboards.
+A custom dashboard that highlights the most important metrics.
 
 ![final.png](blog/guides/images/dashboard/final.png)
 
@@ -92,10 +90,12 @@ send it to a configured contact point such as email, Slack, or a webhook.
 
 Relevant article: [Grafana alerts guide](blog/guides/alerts.md)
 
+![active_notifications_item.png](blog/guides/images/alerts/active_notifications_item.png)
+
 ### K6 metrics
 
 Apart from generating traffic, K6 tracks request durations, 
-success rates and the result of the checks.
+success rates, and the result of the checks.
 
 ```json
 {
@@ -139,7 +139,7 @@ Java flight recorder (JFR) is a hardware usage tracking tool
 that is built into the JDK.
 
 The difference between the spring boot micrometer hardware metrics and JFR
-is that JFR tracks CPU usage per function while micrometer is global. 
+is that JFR tracks CPU usage per function while micrometer track the usage of the whole server. 
 Also, JFR lacks a streamlined way for continuous distributed logging and persistence.
 
 ![jmc.webp](blog/guides/images/jfr/jmc.webp)

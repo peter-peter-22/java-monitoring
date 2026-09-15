@@ -24,7 +24,7 @@ This terminal command starts our java application with JFR enabled.
 
 Here, `settings=default` sets the recording profile.
 
-The recording profile defines how much details JFR collects.
+The recording profile defines how many details JFR collects.
 
 - default: Low impact on performance, fewer details, suitable for production.
 - profile: More tracked metrics, more details, higher performance cost. Development only.
