@@ -8,11 +8,11 @@ import org.example.blog.dto.RegisterRequest;
 import org.example.blog.model.AppUser;
 import org.example.blog.model.BlogPost;
 import org.example.blog.model.Comment;
-import org.example.blog.repository.CommentRepository;
-import org.example.blog.repository.UserRepository;
 import org.example.blog.service.BlogPostService;
 import org.example.blog.service.CommentService;
 import org.example.blog.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -40,6 +40,11 @@ public class BlogController {
     String home(Model model) {
         model.addAttribute("posts", blogPostService.findRecentPosts());
         return "home";
+    }
+
+    @GetMapping("/500")
+    ResponseEntity<Void> intentionalServerError() {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     @GetMapping("/posts/{id}")

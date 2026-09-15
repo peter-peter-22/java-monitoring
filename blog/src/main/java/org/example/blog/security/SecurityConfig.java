@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, UserRepository users, Tracer tracer) {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/posts/*", "/register", "/css/**", "/login", "/logout", "/error","/actuator/**").permitAll()
+                        .requestMatchers("/", "/500", "/posts/*", "/register", "/css/**", "/login", "/logout", "/error","/actuator/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")

@@ -32,6 +32,12 @@ class BlogApplicationTests {
     MockMvc mvc;
 
     @Test
+    void intentionalServerErrorEndpointReturns500() throws Exception {
+        mvc.perform(get("/500"))
+                .andExpect(status().isInternalServerError());
+    }
+
+    @Test
     void invalidRegistrationShowsValidationErrors() throws Exception {
         mvc.perform(post("/register")
                         .with(csrf())
