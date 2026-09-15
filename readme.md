@@ -150,6 +150,6 @@ Relevant articles: [JFR guide](blog/guides/java_flight_recorder.md)
 
 The Grafana ecosystem is suitable for production use, but not with the LGTM image.
 
-It must be replaced with separate serviced with configured persistence.
+It must be replaced with separate services and these services need an external object storage.
 
 [Production guide](/blog/guides/separate_lgtm.md)
