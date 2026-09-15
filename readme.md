@@ -145,3 +145,11 @@ Also, JFR lacks a streamlined way for continuous distributed logging and persist
 ![jmc.webp](blog/guides/images/jfr/jmc.webp)
 
 Relevant articles: [JFR guide](blog/guides/java_flight_recorder.md)
+
+## Production roadmap
+
+The Grafana ecosystem is suitable for production use, but not with the LGTM image.
+
+It must be replaced with separate serviced with configured persistence.
+
+[Production guide](/blog/guides/separate_lgtm.md)
